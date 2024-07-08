@@ -1,4 +1,4 @@
-const prisma = require('../server');
+const prisma = require('../prismaClient');
 
 class MovieService {
   async getAllMovies() {
