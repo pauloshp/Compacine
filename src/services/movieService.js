@@ -14,11 +14,38 @@ class MovieService {
   }
 
   async updateMovie(id, data) {
-    return prisma.movie.update({ where: { id: parseInt(id) }, data });
+    try {
+      const updatedMovie = await prisma.movie.update({
+        where: {
+          id: String(id),
+        },
+        data: {
+          title: data.title,
+          description: data.description,
+          image: data.image,
+          actors: data.actors,
+          genre: data.genre,
+        },
+      });
+      return updatedMovie;
+    } catch (error) {
+      console.error("Error updating movie:", error);
+      throw error;
+    }
   }
 
   async deleteMovie(id) {
-    return prisma.movie.delete({ where: { id: parseInt(id) } });
+    try {
+      const deletedMovie = await prisma.movie.delete({
+        where: {
+          id: String(id),
+        },
+      });
+      return deletedMovie;
+    } catch (error) {
+      console.error("Error deleting movie:", error);
+      throw error;
+    }
   }
 }
 
