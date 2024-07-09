@@ -14,4 +14,23 @@ model Movie {
   image       String
   actors      String[]
   genre       String
+  sessions    Session[]
+}
+
+model Session {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  time        DateTime
+  capacity    Int
+  room        String
+  movie       Movie     @relation(fields: [movieId], references: [id])
+  movieId     String    @db.ObjectId
+  tickets     Ticket[]
+}
+
+model Ticket {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  seat        String
+  price       Float
+  session     Session   @relation(fields: [sessionId], references: [id])
+  sessionId   String    @db.ObjectId
 }
