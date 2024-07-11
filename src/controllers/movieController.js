@@ -14,7 +14,7 @@ class MovieController {
     try {
       const movie = await movieService.getMovieById(req.params.id);
       if (!movie) {
-        return res.status(404).json({ error: 'Movie not found' });
+        return res.status(404).json({ error: 'Filme não encontrado' });
       }
       res.json(movie);
     } catch (error) {
@@ -38,7 +38,7 @@ class MovieController {
       const { title, description, image, actors, genre } = req.body;
       const updatedMovie = await movieService.updateMovie(id, { title, description, image, actors, genre });
       if (!updatedMovie) {
-        return res.status(404).json({ error: 'Movie not found' });
+        return res.status(404).json({ error: 'Filme não encontrado' });
       }
       res.json(updatedMovie);
     } catch (error) {
@@ -51,7 +51,7 @@ class MovieController {
       const { id } = req.params;
       const deletedMovie = await movieService.deleteMovie(id);
       if (!deletedMovie) {
-        return res.status(404).json({ error: 'Movie not found' });
+        return res.status(404).json({ error: 'Filme não encontrado' });
       }
       res.status(204).end();
     } catch (error) {

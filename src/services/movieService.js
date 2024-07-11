@@ -29,7 +29,7 @@ class MovieService {
       });
       return updatedMovie;
     } catch (error) {
-      console.error("Error updating movie:", error);
+      console.error("Erro ao atualizar filme:", error);
       throw error;
     }
   }
@@ -43,7 +43,7 @@ class MovieService {
       });
       return deletedMovie;
     } catch (error) {
-      console.error("Error deleting movie:", error);
+      console.error("Erro ao deletar filme:", error);
       throw error;
     }
   }

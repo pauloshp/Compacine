@@ -13,7 +13,16 @@ class SessionService {
       });
       return newSession;
     } catch (error) {
-      console.error("Error creating session:", error);
+      console.error("Erro ao criar sessão:", error);
+      throw error;
+    }
+  }
+
+  async getAllSessions() {
+    try {
+      return await prisma.session.findMany();
+    } catch (error) {
+      console.error("Erro ao buscar sessões:", error);
       throw error;
     }
   }
@@ -28,7 +37,7 @@ class SessionService {
       });
 
       if (existingTicket) {
-        throw new Error(`Seat ${data.seat} is already booked.`);
+        throw new Error(`A cadeira ${data.seat} já está ocupada.`);
       }
 
       const newTicket = await prisma.ticket.create({
@@ -41,7 +50,16 @@ class SessionService {
 
       return newTicket;
     } catch (error) {
-      console.error("Error creating ticket:", error);
+      console.error("Erro ao criar ingresso:", error);
+      throw error;
+    }
+  }
+
+  async getAllTickets() {
+    try {
+      return await prisma.ticket.findMany();
+    } catch (error) {
+      console.error("Erro ao buscar ingressos:", error);
       throw error;
     }
   }

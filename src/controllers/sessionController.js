@@ -9,8 +9,18 @@ class SessionController {
       const session = await sessionService.createSession({ time, capacity, room, movieId });
       res.json(session);
     } catch (error) {
-      console.error("Error creating session:", error);
-      res.status(500).json({ error: "Failed to create session." });
+      console.error("Erro ao criar sessão:", error);
+      res.status(500).json({ error: "Falha ao criar sessão." });
+    }
+  }
+
+  async getAllSessions(req, res) {
+    try {
+      const sessions = await sessionService.getAllSessions();
+      res.json(sessions);
+    } catch (error) {
+      console.error("Erro ao buscar sessões:", error);
+      res.status(500).json({ error: "Falha ao buscar sessões." });
     }
   }
 
@@ -21,8 +31,18 @@ class SessionController {
       const ticket = await sessionService.createTicket({ seat, price, sessionId });
       res.json(ticket);
     } catch (error) {
-      console.error("Error creating ticket:", error);
-      res.status(500).json({ error: "Failed to create ticket." });
+      console.error("Erro ao criar ingresso:", error);
+      res.status(500).json({ error: "Falha ao criar ingresso." });
+    }
+  }
+
+  async getAllTickets(req, res) {
+    try {
+      const tickets = await sessionService.getAllTickets();
+      res.json(tickets);
+    } catch (error) {
+      console.error("Erro ao buscar ingresso:", error);
+      res.status(500).json({ error: "Erro ao buscar ingresso." });
     }
   }
 }
