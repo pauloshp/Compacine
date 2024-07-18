@@ -9,14 +9,28 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #333;
+            color: #fff;
         }
         .container {
             padding: 20px;
         }
         .movie {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
             margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ddd;
+            background-color: #444;
+        }
+        .movie img {
+            max-width: 150px;
+            height: auto;
+            margin-left: 20px;
+        }
+        .movie-content {
+            flex: 1;
         }
         .movie h2 {
             margin-top: 0;
@@ -45,20 +59,23 @@
                     movieDiv.classList.add('movie');
 
                     movieDiv.innerHTML = `
-                        <h2>${movie.title}</h2>
-                        <p>${movie.description}</p>
-                        <p><strong>Atores:</strong> ${movie.actors.join(', ')}</p>
-                        <p><strong>Gênero:</strong> ${movie.genre}</p>
-                        <div>
-                            <h3>Sessões:</h3>
-                            ${movie.sessions.map(session => `
-                                <div class="Sessão">
-                                    <p><strong>Horário:</strong> ${new Date(session.time).toLocaleString()}</p>
-                                    <p><strong>Capacidade:</strong> ${session.capacity}</p>
-                                    <p><strong>Sala:</strong> ${session.room}</p>
-                                </div>
-                            `).join('')}
+                        <div class="movie-content">
+                            <h2>${movie.title}</h2>
+                            <p>${movie.description}</p>
+                            <p><strong>Atores:</strong> ${movie.actors.join(', ')}</p>
+                            <p><strong>Gênero:</strong> ${movie.genre}</p>
+                            <div>
+                                <h3>Sessões:</h3>
+                                ${movie.sessions.map(session => `
+                                    <div class="session">
+                                        <p><strong>Horário:</strong> ${new Date(session.time).toLocaleString()}</p>
+                                        <p><strong>Capacidade:</strong> ${session.capacity}</p>
+                                        <p><strong>Sala:</strong> ${session.room}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
                         </div>
+                        <img src="${movie.image}" alt="${movie.title} image">
                     `;
 
                     moviesContainer.appendChild(movieDiv);

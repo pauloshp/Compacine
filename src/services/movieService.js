@@ -47,6 +47,19 @@ class MovieService {
       throw error;
     }
   }
+
+  async getMoviesWithSessions() {
+    try {
+      return await prisma.movie.findMany({
+        include: {
+          sessions: true,
+        },
+      });
+    } catch (error) {
+      console.error("Error fetching movies with sessions:", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = new MovieService();

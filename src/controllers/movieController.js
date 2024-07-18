@@ -58,6 +58,16 @@ class MovieController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async getMoviesWithSessions(req, res) {
+    try {
+      const movies = await movieService.getMoviesWithSessions();
+      res.json(movies);
+    } catch (error) {
+      console.error("Error fetching movies with sessions:", error);
+      res.status(500).json({ error: "Failed to fetch movies with sessions." });
+    }
+  }
 }
 
 module.exports = new MovieController();
